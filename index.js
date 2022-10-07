@@ -9,6 +9,7 @@ const server = http.createServer((req, res) => {
                 return;
             }
             res.writeHead(200,{'Content-Type':'text/html'});
+            return res.end(data);
         })
     }
     else if (req.url==='/about') {
@@ -17,6 +18,8 @@ const server = http.createServer((req, res) => {
                 return;
             }
             res.writeHead(200,{'Content-Type':'text/html'});
+            return res.end(data);
+
         })
     }
     else if (req.url==='/contact-me') {
@@ -25,11 +28,18 @@ const server = http.createServer((req, res) => {
                 return;
             }
             res.writeHead(200,{'Content-Type':'text/html'});
+            return res.end(data);
+
         })
     }
     else {
         fs.readFile('404.html', 'utf8', function(err, data) {
+            if (err) {
+                return;
+            }
             res.writeHead(200, {'Content-Type': 'text/html'});
+            return res.end(data);
+
         })
     }
 })
